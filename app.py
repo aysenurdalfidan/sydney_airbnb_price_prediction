@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import pickle
+import joblib
 from PIL import Image
 
 # Page configuration
@@ -9,7 +9,7 @@ st.set_page_config(page_title="Airbnb Price Predictor", page_icon="🏡", layout
 
 # Load the trained LightGBM model
 with open("best_lgb.pkl", "rb") as f:
-    model = pickle.load(f)
+    model = joblib.load(f)
 
 # App header
 st.markdown("""
