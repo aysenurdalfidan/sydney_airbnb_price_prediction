@@ -2,5 +2,5 @@ streamlit
 numpy
 pandas
 pillow
-lightgbm
+lightgbm==4.6.0
 joblib
