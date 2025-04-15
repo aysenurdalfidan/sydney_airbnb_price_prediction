@@ -1,5 +1,6 @@
 streamlit
 numpy
+pandas
 pillow
 lightgbm
-
+joblib
