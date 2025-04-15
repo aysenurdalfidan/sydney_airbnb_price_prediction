@@ -1,13 +1,11 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import lightgbm as lgb
-from PIL import Image
+import joblib
 
 st.set_page_config(page_title="Airbnb Price Predictor", page_icon="🏡", layout="centered")
 
-# Modeli yükle (pkl değil .txt!)
-model = lgb.Booster(model_file="best_lgb.txt")
+model = joblib.load("best_lgb.pkl")
 
 st.markdown("""
     <h1 style='text-align: center; color: #4CAF50;'>Sydney Airbnb Price Predictor</h1>
