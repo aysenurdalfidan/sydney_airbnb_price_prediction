@@ -32,12 +32,6 @@ Alternative models (LightGBM, Random Forest) were evaluated, but XGBoost yielded
 ## Deployment
 The model is deployed via a Streamlit application (`app.py`). Users can input listing characteristics to receive a predicted nightly rate in real-time.
 
-## Files in Repository
-- `main.ipynb`: Data cleaning, feature engineering, model training
-- `sentiment.ipynb`: Review-based sentiment analysis and merging
-- `airbnb_with_sentiment.csv`: Final dataset with sentiment scores
-- `app.py`: Streamlit app for user interaction
-
 ## Data Source
 [Inside Airbnb - Sydney](http://insideairbnb.com/get-the-data.html)
 
