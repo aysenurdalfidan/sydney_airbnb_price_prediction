@@ -1,29 +1,30 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import pickle
 from PIL import Image
 
-# Page config
+# Page configuration
 st.set_page_config(page_title="Airbnb Price Predictor", page_icon="🏡", layout="centered")
 
-# Load model
+# Load the trained model
 with open("best_xgb.pkl", "rb") as f:
     model = pickle.load(f)
 
-# Title & intro
+# App header
 st.markdown("""
     <h1 style='text-align: center; color: #4CAF50;'>Sydney Airbnb Price Predictor</h1>
-    <p style='text-align: center;'>🏡 Estimate the nightly price based on listing features.</p>
+    <p style='text-align: center;'>🏡 Estimate the nightly rental price based on listing details.</p>
     <hr>
 """, unsafe_allow_html=True)
 
-# Feature inputs
+# Input features
 col1, col2 = st.columns(2)
 
 with col1:
     beds = st.slider("Number of Beds", 1, 10, 2)
     bathrooms = st.slider("Number of Bathrooms", 1, 5, 1)
-    minimum_nights = st.slider("Minimum Nights Required", 1, 30, 2)
+    minimum_nights = st.slider("Minimum Nights", 1, 30, 2)
 
 with col2:
     availability_365 = st.slider("Availability (days/year)", 0, 365, 180)
@@ -31,11 +32,13 @@ with col2:
 
 # Predict button
 if st.button("Predict Price 📈"):
-    # Prepare feature array
-    features = np.array([[beds, bathrooms, minimum_nights, availability_365, avg_sentiment_score]])
+    # Ensure the features match the trained model
+    feature_names = ["beds", "bathrooms", "minimum_nights", "availability_365", "avg_sentiment_score"]
+    features_df = pd.DataFrame([[beds, bathrooms, minimum_nights, availability_365, avg_sentiment_score]],
+                               columns=feature_names)
 
-    # Predict & reverse log transformation
-    log_price = model.predict(features)[0]
+    # Predict and inverse log
+    log_price = model.predict(features_df)[0]
     predicted_price = np.expm1(log_price)
 
     st.markdown(f"""
@@ -44,10 +47,10 @@ if st.button("Predict Price 📈"):
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<small>Note: Predictions are based on statistical modeling and do not guarantee actual prices.</small>", unsafe_allow_html=True)
+    st.markdown("<small>Note: This prediction is based on a machine learning model and does not guarantee actual booking prices.</small>", unsafe_allow_html=True)
 
 # Footer
 st.markdown("""
     <hr>
-    <p style='text-align:center; font-size:13px;'>Developed by <b>Ayşenur D.</b> • Powered by XGBoost</p>
+    <p style='text-align:center; font-size:13px;'>Created by <b>Ayse D.</b> • Powered by XGBoost</p>
 """, unsafe_allow_html=True)
