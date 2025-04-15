@@ -8,7 +8,7 @@ from PIL import Image
 st.set_page_config(page_title="Airbnb Price Predictor", page_icon="🏡", layout="centered")
 
 # Load the trained model
-with open("best_xgb.pkl", "rb") as f:
+with open("best_lgb.pkl", "rb") as f:
     model = pickle.load(f)
 
 # App header
@@ -52,5 +52,5 @@ if st.button("Predict Price 📈"):
 # Footer
 st.markdown("""
     <hr>
-    <p style='text-align:center; font-size:13px;'>Created by <b>Ayse D.</b> • Powered by XGBoost</p>
+    <p style='text-align:center; font-size:13px;'>Created by <b>Ayse D.</b> • Powered by LightGBM</p>
 """, unsafe_allow_html=True)
