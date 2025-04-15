@@ -7,7 +7,7 @@ from PIL import Image
 # Page configuration
 st.set_page_config(page_title="Airbnb Price Predictor", page_icon="🏡", layout="centered")
 
-# Load the trained model
+# Load the trained LightGBM model
 with open("best_lgb.pkl", "rb") as f:
     model = pickle.load(f)
 
