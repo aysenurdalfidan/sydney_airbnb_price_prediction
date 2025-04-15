@@ -29,7 +29,7 @@ if st.button("Predict Price 📈"):
     features_df = pd.DataFrame([[beds, bathrooms, minimum_nights, availability_365, avg_sentiment_score]],
                                columns=feature_names)
 
-    log_price = model.predict(features_df)[0]
+    log_price = model.predict(features_df.values)[0]
     predicted_price = np.expm1(log_price)
 
     st.markdown(f"""
