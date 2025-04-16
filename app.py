@@ -5,7 +5,7 @@ import joblib
 
 st.set_page_config(page_title="Airbnb Price Predictor", page_icon="🏡", layout="centered")
 
-model = joblib.load("best_lgb.pkl")
+model, feature_columns = joblib.load("best_lgb_with_columns.pkl")
 
 st.markdown("""
     <h1 style='text-align: center; color: #4CAF50;'>Sydney Airbnb Price Predictor</h1>
